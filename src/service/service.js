@@ -1,6 +1,6 @@
 import * as axios from 'axios';
 
-const url = 'http://localhost:3000/';
+const url = 'http://localhost:8000/';
 
 export const getUser = async () => {
   return await axios.get(`${url}get`).then(res=>{
