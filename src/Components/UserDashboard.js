@@ -6,9 +6,6 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import TextField from '@mui/material/TextField';
-import Grid from "@material-ui/core/Grid";
 import img from '../assets/img.jpg'
 
 

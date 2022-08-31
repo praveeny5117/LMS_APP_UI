@@ -7,9 +7,6 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import TextField from '@mui/material/TextField';
-import Grid from "@material-ui/core/Grid";
-import img from '../assets/img.jpg'
 import Radio from '@mui/material/Radio';
 import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
