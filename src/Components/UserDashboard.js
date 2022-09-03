@@ -7,10 +7,15 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom'
 import img from '../assets/img.jpg'
+import { Modal } from 'react-bootstrap'
+import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import { useState, useEffect } from 'react'
 
 
 function UserDashboard() {
-let navigate = useNavigate()
+    let navigate = useNavigate()
+    const [isOption, setOption] = useState(false)
+
     return (
         <div style={{ backgroundColor: '#EFEEEE', width: '100%;', height: '650px' }}>
             <div className="d-flex align-items-center justify-content-center shadow rounded">
@@ -18,7 +23,7 @@ let navigate = useNavigate()
 
                     <Card style={{ height: '550px', width: '80rem' }}>
                         <Card.Body>
-                            <Card.Title style={{ paddingTop: '1rem' }} className="d-flex align-items-center justify-content-center">User Profile
+                            <Card.Title style={{ paddingTop: '1rem' }} className="d-flex align-items-center justify-content-center">Profile
                             </Card.Title>
                             <Card.Text>
                                 <Form style={{ padding: '21px' }}>
@@ -31,7 +36,7 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Employee ID" />
+                                                            placeholder="Employee ID" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -40,7 +45,7 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Email" />
+                                                            placeholder="Email" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -49,7 +54,7 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Gender" />
+                                                            placeholder="Gender" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -58,7 +63,7 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="DOB" />
+                                                            placeholder="DOB" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
 
@@ -69,46 +74,54 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="City" />
+                                                            placeholder="City" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                                     <Form.Label column>
-                                                        Country
+                                                        State
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Country" />
+                                                            placeholder="State" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                             </div>
-                                            <div class='col-4'>  
-                                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                                                <Form.Label column>
-                                                    Emp Name
-                                                </Form.Label>
-                                                <Col >
-                                                    <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                        placeholder="Emp Name" />
-                                                </Col>
-                                            </Form.Group>
+                                            <div class='col-4'>
+                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                                    <Form.Label column>
+                                                        Emp Name
+                                                    </Form.Label>
+                                                    <Col >
+                                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                                            placeholder="Emp Name" readOnly={true} />
+                                                    </Col>
+                                                </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                                     <Form.Label column>
                                                         Phone
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Phone" />
+                                                            placeholder="Phone" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
-
+                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                                    <Form.Label column>
+                                                        Designation
+                                                    </Form.Label>
+                                                    <Col >
+                                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                                            placeholder="Designation" readOnly={true} />
+                                                    </Col>
+                                                </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                                     <Form.Label column>
                                                         Blood Group
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="B+" />
+                                                            placeholder="B+" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
 
@@ -118,30 +131,21 @@ let navigate = useNavigate()
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="DOJ" />
+                                                            placeholder="DOJ" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                                     <Form.Label column>
-                                                        State
+                                                        Country
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="State" />
-                                                    </Col>
-                                                </Form.Group>
-                                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
-                                                    <Form.Label column>
-                                                        Pin
-                                                    </Form.Label>
-                                                    <Col >
-                                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Pin" />
+                                                            placeholder="Country" readOnly={true} />
                                                     </Col>
                                                 </Form.Group>
                                             </div>
                                             <div class='col-4'>
-                                                <Button class="btn btn-primary" style={{ float: 'right' }} >Edit</Button>
+                                                <Button class="btn btn-primary" style={{ float: 'right' }} onClick={() => setOption(true)}>Edit</Button>
 
                                                 <div style={{ paddingLeft: '50px' }}>
                                                     <img style={{
@@ -163,16 +167,142 @@ let navigate = useNavigate()
                                     </div>
 
                                     <Button class="btn btn-primary" style={{ width: '10rem', marginLeft: '7rem' }}
-                                    onClick={()=>{navigate('/leavehistory')}} >Apply Leave</Button>
+                                        onClick={() => { navigate('/leavehistory') }} >Apply Leave</Button>
                                     <Button cxlass="btn btn-primary" style={{ width: '10rem', marginLeft: '3rem' }}
-                                     onClick={()=>{navigate('/permissionhistory')}}>Apply Permission</Button>
+                                        onClick={() => { navigate('/permissionhistory') }}>Apply Permission</Button>
                                     <Button class="btn btn-primary" style={{ width: '10rem', marginLeft: '3rem' }}
-                                    onClick={()=>{navigate('/wfhhistory')}}>Apply WFH</Button>
+                                        onClick={() => { navigate('/wfhhistory') }}>Apply WFH</Button>
                                 </Form>
                             </Card.Text>
                         </Card.Body>
                     </Card>
                 </div>
+            </div>
+            <div>
+                <Modal show={isOption}  >
+                    <Modal.Header closeButton onClick={() => setOption(false)}>
+                        <Modal.Title>Edit Employee</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>
+                        <Form style={{ padding: '21px' }}>
+                            <div class='col-12'>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Emp ID
+                                    </Form.Label>
+                                    <Col>
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Employee ID" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Emp Name
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Emp Name" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Email ID
+                                    </Form.Label>
+                                    <Col>
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Email"/>
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Phone
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Phone" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Designation
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Designation"/>
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Blood Group
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="B+"/>
+                                    </Col>
+                                </Form.Group>
+
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Gender
+                                    </Form.Label>
+                                    <Col>
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Gender"/>
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Date of Birth
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="DOB" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Date of Join
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="DOJ" />
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        City
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="City"/>
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        State
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="State"/>
+                                    </Col>
+                                </Form.Group>
+                                <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                    <Form.Label column>
+                                        Country
+                                    </Form.Label>
+                                    <Col >
+                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                            placeholder="Country"/>
+                                    </Col>
+                                </Form.Group>
+                            </div>
+                        </Form>
+                    </Modal.Body>
+                    <Modal.Footer>
+                        <Button type='button' class="btn btn-secondary btn-sm" onClick={() => setOption(false)} >Close</Button>
+                        <Button class="btn btn-primary btn-sm">Update</Button>
+                    </Modal.Footer>
+                </Modal>
             </div>
         </div>
     );

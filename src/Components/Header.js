@@ -39,6 +39,7 @@ function Header() {
             <Button style={{marginLeft:'1rem'}} href='/dashboard'>LMS</Button> 
             <Button style={{marginLeft:'1rem'}} href='/entersheet'>Time Sheet</Button> 
             <Button style={{marginLeft:'1rem'}} href='/viewsheet'>ViewSheet</Button> 
+            <Button style={{marginLeft:'1rem'}} href='/onboard'>onBoard</Button> 
           </Box>
           <Box sx={{ flexGrow: 0 }}>
           <Button href='/add'>Add</Button>

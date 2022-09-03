@@ -10,6 +10,7 @@ import PermissionHistory from './Components/Permissionhistory'
 import WFHhistory from './Components/WFHhistory'
 import EnterTimeSheet from './Components/EnterTimeSheet';
 import ViewTimeSheet from './Components/ViewTimeSheet';
+import OnBoardEmployee from './Components/OnbordEmployee'
 
 const  App = () => {
   return (
@@ -26,6 +27,7 @@ const  App = () => {
           <Route path='/wfhhistory' element={<WFHhistory/>} />
           <Route path='/entersheet' element={<EnterTimeSheet/>} />
           <Route path='/viewsheet' element={<ViewTimeSheet/>} />
+          <Route path='/onboard' element={<OnBoardEmployee/>} />
         </Routes>
       </Router> 
   </div>
