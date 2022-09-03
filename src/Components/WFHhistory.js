@@ -22,7 +22,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+import Select from '@mui/material/Select';
 // import DatePicker from 'react-date-picker';
 
 
@@ -44,30 +44,8 @@ function WFHhistory() {
     // const alert = useAlert()
     const [isOption, setOption] = useState(false)
     const [alertDialog, setOpen] = useState(false);
-    const [leaveBalance, setleaveBalance] = useState([])
     const [leaveHistory, setleaveHistory] = useState([])
     useEffect(() => {
-        let lbdata = [{
-            name: 'Permission Count', avalperm: 2, usedperm: 1, balnceperm: 1
-        }]
-        const data = lbdata.map(
-            (ele, index) => {
-                return (
-                    <tr>
-                        <td>{ele.name}</td>
-                        <td>{ele.avalperm}</td>
-                        <td>{ele.usedperm}</td>
-                        <td>{ele.balnceperm}</td>
-
-                        <td>
-                            <Button onClick={() => setOption(true)} class='btn btn-primary'>Apply</Button>
-                        </td>
-                    </tr>
-                )
-            }
-        )
-        setleaveBalance(data);
-
         let lhData = [{ appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'pending' },
         { appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'Rejected' },
         { appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'pending' },

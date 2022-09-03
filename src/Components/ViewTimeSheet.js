@@ -12,12 +12,19 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 
 function ViewTimeSheet() {
     let navigate = useNavigate()
     const [filterVal, setFilterVal] = useState("bydate")
     const [timeSheetHistory, setTimeSheetHistory] = useState([])
+    const [selectedDate, setDate] = useState(new Date())
+
+    const onChangeDate = (event) => {
+        setDate(event)
+    }
 
     useEffect(() => {
         //page load  
@@ -82,8 +89,15 @@ function ViewTimeSheet() {
                                                         Select Date
                                                     </Form.Label>
                                                     <Col>
-                                                        <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Select Date" />
+                                                             <DatePicker
+                                                        selected={selectedDate}
+                                                        onChange={onChangeDate}
+                                                        maxDate={selectedDate}
+                                                        customInput={
+                                                            <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                                        placeholder="Select Date" />
+                                                          }
+                                                    />
                                                     </Col>
                                                 </Form.Group>
                                             }
@@ -92,7 +106,7 @@ function ViewTimeSheet() {
                                                     <div className='row'>
                                                         <div className='col-2'></div>
                                                         <div className='col-5' style={{ marginLeft: '-110px' }}>
-                                                            <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                                        <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
                                                                 <Form.Label column style={{ marginLeft: '110px' }}>
                                                                     Select Year
                                                                 </Form.Label>

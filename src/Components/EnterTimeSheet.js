@@ -13,6 +13,8 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextareaAutosize from '@mui/material/TextareaAutosize';
+import "react-datepicker/dist/react-datepicker.css";
+import DatePicker from "react-datepicker";
 
 
 
@@ -23,6 +25,10 @@ function EnterTimeSheet() {
     const [taskList, setTaskList] = useState(1);
     const [taskTypetList, setTaskTypetList] = useState(1);
     const [status, setStatus] = useState(1);
+    const [selectedDate, setDate] = useState(new Date())
+
+    useEffect(() => {
+    }, [])
 
     const onChangeProject = (event) => {
         setProjectList(event.target.value);
@@ -40,9 +46,10 @@ function EnterTimeSheet() {
         setStatus(event.target.value);
     };
 
-    useEffect(() => {
-    }, [])
-
+    const onChangeDate = (event) => {
+        setDate(event)
+    }
+ 
     return (
         <div style={{ backgroundColor: '#EFEEEE', width: '100%;' }}>
             <div className="d-flex align-items-center justify-content-center rounded">
@@ -61,8 +68,15 @@ function EnterTimeSheet() {
                                                     Select Date
                                                 </Form.Label>
                                                 <Col>
-                                                    <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
+                                                    <DatePicker
+                                                        selected={selectedDate}
+                                                        onChange={onChangeDate}
+                                                        maxDate={selectedDate}
+                                                        customInput={
+                                                            <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
                                                         placeholder="Select Date" />
+                                                          }
+                                                    />
                                                 </Col>
                                             </Form.Group>
 
