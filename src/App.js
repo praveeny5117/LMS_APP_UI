@@ -11,6 +11,7 @@ import WFHhistory from './Components/WFHhistory'
 import EnterTimeSheet from './Components/EnterTimeSheet';
 import ViewTimeSheet from './Components/ViewTimeSheet';
 import OnBoardEmployee from './Components/OnbordEmployee'
+import EmployeeList from './Components/EmployeeList';
 
 const  App = () => {
   return (
@@ -28,6 +29,7 @@ const  App = () => {
           <Route path='/entersheet' element={<EnterTimeSheet/>} />
           <Route path='/viewsheet' element={<ViewTimeSheet/>} />
           <Route path='/onboard' element={<OnBoardEmployee/>} />
+          <Route path='/employeelist' element={<EmployeeList/>} />
         </Routes>
       </Router> 
   </div>

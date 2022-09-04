@@ -9,3 +9,11 @@ export const onboard = async (data) => {
       return error
     });
 };
+
+export const getEmployeeList = async () => {
+  return await axios.get(`${url}/onboard/employeeList`).then(res=>{
+   return res
+   }).catch(error=>{
+     return error
+   });
+};

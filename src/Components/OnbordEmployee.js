@@ -55,7 +55,7 @@ function OnBoardEmployee() {
                 timeout: 2000, 
                 type: 'success',
                 onClose: () => {
-                    navigate("/list");
+                    navigate("/employeelist");
                 } 
               })
         }
