@@ -6,25 +6,37 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
-import {useNavigate} from 'react-router-dom'
-import {useState} from 'react'
-import TextField from '@mui/material/TextField';
-import Grid from "@material-ui/core/Grid";
-
+import { useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { signin } from '../service/onBoardService';
+import { useAlert } from 'react-alert'
 
 function Login() {
+    const alert = useAlert()
     let navigate = useNavigate()
-    const [userName, setName] = useState('')
+    const [email, setName] = useState('')
     const [userPassword, setPassword] = useState('')
 
-   function userLogin(){
-let obj = {
-    username:userName,
-    password:userPassword
-}
-
-    navigate('/dashboard')
-   }
+    async function userLogin() {
+        let obj = {
+            email: email,
+            password: userPassword
+        }
+        let loggedIn = await signin(obj)
+        if (loggedIn?.status === 200) {
+            navigate('/dashboard')
+        } else if (loggedIn?.response?.status === 400) {
+            alert.show(loggedIn.response.data.message, {
+                timeout: 4000,
+                type: 'error',
+            })
+        } else {
+            alert.show("Server Down Please try after some time", {
+                timeout: 4000,
+                type: 'error'
+            })
+        }
+    }
 
     return (
         <div style={{ backgroundImage: `url(${bgImg})`, height: '715px' }}>
@@ -41,8 +53,8 @@ let obj = {
                                             User Name*
                                         </Form.Label>
                                         <Col sm="10" >
-                                            <Form.Control style={{ width: '20rem', height: '3rem' }} type="text" 
-                                            placeholder="User Name" onChange={(e)=>setName(e.target.value)} value={userName} />
+                                            <Form.Control style={{ width: '20rem', height: '3rem' }} type="text"
+                                                placeholder="User Name" onChange={(e) => setName(e.target.value)} value={email} />
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -51,9 +63,10 @@ let obj = {
                                         </Form.Label>
                                         <Col sm="10">
                                             <Form.Control style={{ width: '20rem', height: '3rem' }} type="password"
-                                             placeholder="Password" onChange={(e)=>setPassword(e.target.value)} value={userPassword} />
+                                                placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={userPassword} />
                                         </Col>
                                     </Form.Group>
+                                    <span style={{ float: 'right' }}><a href='/forgetpassword'>Forgot Password?</a></span>
                                 </Form>
                             </Card.Text>
                             <Button style={{ width: '8rem', height: '3rem', marginLeft: '3rem' }} class="btn btn-danger rounded-pill" >Cancel</Button>

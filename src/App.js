@@ -12,11 +12,14 @@ import EnterTimeSheet from './Components/EnterTimeSheet';
 import ViewTimeSheet from './Components/ViewTimeSheet';
 import OnBoardEmployee from './Components/OnbordEmployee'
 import EmployeeList from './Components/EmployeeList';
+import ActivateAccount from './Components/ActivateAccount';
+import Forgetpassword from './Components/Forgetpassword'
 
 const  App = () => {
   return (
      <div> 
-      {window.location.pathname !== '/' && <Header/>}
+      {((window.location.pathname !== '/') && (window.location.pathname !== '/forgetpassword') &&
+      (window.location.pathname !== '/activate')) && <Header/>}
      <Router>
        <Routes>
           <Route path='' element={<Login/>} />
@@ -29,6 +32,8 @@ const  App = () => {
           <Route path='/entersheet' element={<EnterTimeSheet/>} />
           <Route path='/viewsheet' element={<ViewTimeSheet/>} />
           <Route path='/onboard' element={<OnBoardEmployee/>} />
+          <Route path='/forgetpassword' element={<Forgetpassword/>} />
+          <Route path='/activate' element={<ActivateAccount/>} />
           <Route path='/employeelist' element={<EmployeeList/>} />
         </Routes>
       </Router> 

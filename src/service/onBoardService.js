@@ -17,3 +17,11 @@ export const getEmployeeList = async () => {
      return error
    });
 };
+
+export const signin = async (data) => {
+  return await axios.post(`${url}/onboard/login`,data).then(res=>{
+   return res
+   }).catch(error=>{
+     return error
+   });
+};
