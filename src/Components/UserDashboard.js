@@ -10,11 +10,47 @@ import img from '../assets/img.jpg'
 import { Modal } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import { useState, useEffect } from 'react'
+import { getSingleEmployeeList } from '../service/onBoardService'
 
 
 function UserDashboard() {
     let navigate = useNavigate()
     const [isOption, setOption] = useState(false)
+    const [empID, setEmpID] = useState(null);
+    const [empName, setEmpName] = useState('');
+    const [empEmail, setEmpEmail] = useState('');
+    const [empPhone, setEmpPhone] = useState('');
+    const [empGender, setEmpGender] = useState('');
+    const [empBlood, setEmpBlood] = useState('');
+    const [empDesignation, setEmpDesignation] = useState('');
+    const [empDOB, setEmpDOB] = useState('');
+    const [empDOJ, setEmpDOJ] = useState('');
+    const [empCity, setEmpCity] = useState('');
+    const [empState, setEmpState] = useState('');
+    const [empCountry, setEmpCountry] = useState('');
+
+
+
+    useEffect(() => {
+        async function getEmployee() {
+            const data = await getSingleEmployeeList({ email: 'admin@admin.com' });
+            if (data.status === 200) {
+                setEmpEmail(data.data.empEmail)
+                setEmpName(data.data.empName)
+                setEmpID(data.data.empID)
+                setEmpBlood(data.data.empBlood)
+                setEmpCity(data.data.empCity);
+                setEmpCountry(data.data.empCountry);
+                setEmpDOB(data.data.empDOB)
+                setEmpDOJ(data.data.empDOJ)
+                setEmpDesignation(data.data.empDesignation)
+                setEmpGender(data.data.empGender)
+                setEmpPhone(data.data.empPhone)
+                setEmpState(data.data.empState)
+            }
+        }
+        getEmployee();
+    }, [])
 
     return (
         <div style={{ backgroundColor: '#EFEEEE', width: '100%;', height: '650px' }}>
@@ -36,7 +72,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Employee ID" readOnly={true} />
+                                                            placeholder="Employee ID" readOnly={true} value={empID} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -45,7 +81,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Email" readOnly={true} />
+                                                            placeholder="Email" value={empEmail} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -54,7 +90,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col>
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Gender" readOnly={true} />
+                                                            placeholder="Gender" readOnly={true} value={empGender} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -63,7 +99,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="DOB" readOnly={true} />
+                                                            placeholder="DOB" readOnly={true} value={empDOB}/>
                                                     </Col>
                                                 </Form.Group>
 
@@ -74,7 +110,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="City" readOnly={true} />
+                                                            placeholder="City" readOnly={true} value={empCity} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -83,7 +119,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="State" readOnly={true} />
+                                                            placeholder="State" readOnly={true} value={empState}/>
                                                     </Col>
                                                 </Form.Group>
                                             </div>
@@ -94,7 +130,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Emp Name" readOnly={true} />
+                                                            placeholder="Emp Name" readOnly={true} value={empName} />
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -103,7 +139,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Phone" readOnly={true} />
+                                                            placeholder="Phone" readOnly={true} value={empPhone}/>
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -112,7 +148,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Designation" readOnly={true} />
+                                                            placeholder="Designation" readOnly={true} value={empDesignation}/>
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -121,7 +157,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="B+" readOnly={true} />
+                                                            placeholder="B+" readOnly={true} value={empBlood} />
                                                     </Col>
                                                 </Form.Group>
 
@@ -131,7 +167,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="DOJ" readOnly={true} />
+                                                            placeholder="DOJ" readOnly={true} value={empDOJ}/>
                                                     </Col>
                                                 </Form.Group>
                                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -140,7 +176,7 @@ function UserDashboard() {
                                                     </Form.Label>
                                                     <Col >
                                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                                            placeholder="Country" readOnly={true} />
+                                                            placeholder="Country" readOnly={true} value={empCountry} />
                                                     </Col>
                                                 </Form.Group>
                                             </div>
@@ -192,7 +228,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col>
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Employee ID" />
+                                            placeholder="Employee ID" value={empID} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -201,7 +237,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Emp Name" />
+                                            placeholder="Emp Name" value={empName} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -210,7 +246,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col>
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Email"/>
+                                            placeholder="Email" value={empEmail} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -219,7 +255,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Phone" />
+                                            placeholder="Phone" value={empPhone} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -228,7 +264,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Designation"/>
+                                            placeholder="Designation" value={empDesignation} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -237,7 +273,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="B+"/>
+                                            placeholder="B+" value={empBlood} />
                                     </Col>
                                 </Form.Group>
 
@@ -247,7 +283,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col>
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Gender"/>
+                                            placeholder="Gender" value={empGender} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -256,7 +292,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="DOB" />
+                                            placeholder="DOB" value={empDOB}/>
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -265,7 +301,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="DOJ" />
+                                            placeholder="DOJ" value={empDOJ} />
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -274,7 +310,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="City"/>
+                                            placeholder="City" value={empCity}/>
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -283,7 +319,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="State"/>
+                                            placeholder="State" value={empState}/>
                                     </Col>
                                 </Form.Group>
                                 <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
@@ -292,7 +328,7 @@ function UserDashboard() {
                                     </Form.Label>
                                     <Col >
                                         <Form.Control style={{ width: '17rem', height: '3rem' }} type="text"
-                                            placeholder="Country"/>
+                                            placeholder="Country" value={empCountry}/>
                                     </Col>
                                 </Form.Group>
                             </div>
