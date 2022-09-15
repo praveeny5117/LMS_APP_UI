@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { signin } from '../service/onBoardService';
 import { useAlert } from 'react-alert'
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 
 function Login() {
     const alert = useAlert()
@@ -44,7 +46,7 @@ function Login() {
                 <div className="d-flex align-items-center" style={{ height: "500px" }}>
                     <Card style={{ width: '26rem', height: '33rem' }}>
                         <Card.Body>
-                            <Card.Title style={{ paddingTop: '1rem' }} className="d-flex align-items-center justify-content-center">Log In
+                            <Card.Title style={{ paddingTop: '1rem' }} className="d-flex align-items-center justify-content-center">SignIn
                             </Card.Title>
                             <Card.Text>
                                 <Form style={{ padding: '21px' }}>
@@ -58,20 +60,26 @@ function Login() {
                                         </Col>
                                     </Form.Group>
                                     <Form.Group as={Row} className="mb-3" controlId="formPlaintextPassword">
+                                        <p>
                                         <Form.Label column>
                                             Password*
                                         </Form.Label>
                                         <Col sm="10">
-                                            <Form.Control style={{ width: '20rem', height: '3rem' }} type="password"
+                                            <Form.Control style={{ width: '20rem', height: '3rem'}} type="password"
                                                 placeholder="Password" onChange={(e) => setPassword(e.target.value)} value={userPassword} />
+                                        <i class="far fa-eye" id="togglePassword"></i>
+                                        <i class="far fa-eye-slash" id="togglePassword"></i>
+                                        <VisibilityIcon />
+                                        <VisibilityOffIcon />
                                         </Col>
+                                        </p>
                                     </Form.Group>
                                     <span style={{ float: 'right' }}><a href='/forgetpassword'>Forgot Password?</a></span>
                                 </Form>
                             </Card.Text>
                             <Button style={{ width: '8rem', height: '3rem', marginLeft: '3rem' }} class="btn btn-danger rounded-pill" >Cancel</Button>
                             <Button style={{ width: '8rem', height: '3rem', marginLeft: '1rem' }} onClick={userLogin}
-                                class="btn btn-primary rounded-pill" >Login</Button>
+                                class="btn btn-primary rounded-pill" >SignIn</Button>
                         </Card.Body>
                     </Card>
                 </div>
