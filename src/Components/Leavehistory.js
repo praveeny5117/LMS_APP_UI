@@ -21,8 +21,11 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
+import { getManagers } from '../service/onBoardService'
+
 
 function ListHistory() {
+    const [reportingManagerList, setReportingManagerList] = useState([])
     const [reporingManager, setreportingManager] = useState(0);
     const [leaveDuration, setLeaveDuration] = useState(1);
 
@@ -46,6 +49,29 @@ function ListHistory() {
     const [leaveBalance, setleaveBalance] = useState([])
     const [leaveHistory, setleaveHistory] = useState([])
     useEffect(() => {
+
+        async function getManagerData() {
+            const data = await getManagers();
+            if (data.status === 200) {
+                const record = data.data.map(
+                    (ele, index) => {
+                        return (<MenuItem value={ele.empID}>{ele.empName} </MenuItem>)
+                    }
+                )
+                setReportingManagerList(record)
+            }
+            else if (data.response.status === 500) {
+                alert.show('Internal Server Issue', {
+                    timeout: 2000,
+                    type: 'error',
+                    onClose: () => {
+                        // window.location.reload(false)
+                    }
+                })
+            }
+        }
+        getManagerData()
+
         let lbdata = [{
             name: 'Sick Leave', earnedLeave: 3, usedLeave: 2, balnce: 1
         }, {
@@ -195,10 +221,8 @@ function ListHistory() {
                                         label="Reporting Manager"
                                         onChange={handleChange1}
                                     >
-                                        <MenuItem value={0}>--Select--</MenuItem>
-                                        <MenuItem value={1}>Praveen1</MenuItem>
-                                        <MenuItem value={2}>Praveen2</MenuItem>
-                                        <MenuItem value={3}>Praveen3</MenuItem>
+                                        <MenuItem disabled value={0}>--Select--</MenuItem>
+                                        {reportingManagerList}
                                     </Select>
                                 </FormControl>
                             </Grid>

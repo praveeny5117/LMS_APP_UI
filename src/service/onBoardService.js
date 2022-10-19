@@ -33,3 +33,11 @@ export const signin = async (data) => {
      return error
    });
 };
+
+export const getManagers = async () => {
+  return await axios.get(`${url}/onboard/getmanagerlist`).then(res=>{
+   return res
+   }).catch(error=>{
+     return error
+   });
+};

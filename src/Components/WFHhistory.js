@@ -7,7 +7,7 @@ import Button from '@mui/material/Button';
 import 'reactjs-popup/dist/index.css';
 import { Modal } from 'react-bootstrap'
 import '../../node_modules/bootstrap/dist/css/bootstrap.min.css'
-// import { useAlert } from 'react-alert'
+import { useAlert } from 'react-alert'
 import Box from '@mui/material/Box';
 import Tab from '@mui/material/Tab';
 import TabContext from '@mui/lab/TabContext';
@@ -24,13 +24,15 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 // import DatePicker from 'react-date-picker';
+import { getManagers } from '../service/onBoardService'
 
 
 
 function WFHhistory() {
     const [reporingManager, setreportingManager] = useState(0);
+    const [reportingManagerList, setReportingManagerList] = useState([])
     const [leaveDuration, setLeaveDuration] = useState(1);
-    
+
     const leaveDurationChange = (event) => {
         setLeaveDuration(event.target.value);
     };
@@ -41,11 +43,33 @@ function WFHhistory() {
 
 
     // let navigate = useNavigate();
-    // const alert = useAlert()
+    const alert = useAlert()
     const [isOption, setOption] = useState(false)
     const [alertDialog, setOpen] = useState(false);
     const [leaveHistory, setleaveHistory] = useState([])
     useEffect(() => {
+        async function getManagerData() {
+            const data = await getManagers();
+            if (data.status === 200) {
+                const record = data.data.map(
+                    (ele, index) => {
+                        return (<MenuItem value={ele.empID}>{ele.empName} </MenuItem>)
+                    }
+                )
+                setReportingManagerList(record)
+            }
+            else if (data.response.status === 500) {
+                alert.show('Internal Server Issue', {
+                    timeout: 2000,
+                    type: 'error',
+                    onClose: () => {
+                        // window.location.reload(false)
+                    }
+                })
+            }
+        }
+        getManagerData()
+
         let lhData = [{ appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'pending' },
         { appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'Rejected' },
         { appliedon: '29/09/2022', sData: '22/09/2022', eDate: '22/09/2022', noOfdays: 2, reasoforWFH: 'sick', status: 'pending' },
@@ -70,9 +94,6 @@ function WFHhistory() {
         )
         setleaveHistory(data1);
     }, [])
-
-
-
 
     return (
         <div className='container' style={{ paddingTop: '50px' }}>
@@ -121,7 +142,7 @@ function WFHhistory() {
                                 style={{ width: "100%" }} id="email" label="Start Date" variant="outlined" /></Grid>
                             <Grid item> <TextField
                                 style={{ width: "100%" }} id="email" label="End date" variant="outlined" /></Grid>
-                                 <Grid item> 
+                            <Grid item>
                                 <FormControl fullWidth>
                                     <InputLabel id="demo-simple-select-label">Duration</InputLabel>
                                     <Select
@@ -151,10 +172,8 @@ function WFHhistory() {
                                         label="Reporting Manager"
                                         onChange={handleChange1}
                                     >
-                                        <MenuItem value={0}>--Select--</MenuItem>
-                                        <MenuItem value={1}>Praveen1</MenuItem>
-                                        <MenuItem value={2}>Praveen2</MenuItem>
-                                        <MenuItem value={3}>Praveen3</MenuItem>
+                                        <MenuItem disabled value={0}>--Select--</MenuItem>
+                                        {reportingManagerList}
                                     </Select>
                                 </FormControl>
                             </Grid>
